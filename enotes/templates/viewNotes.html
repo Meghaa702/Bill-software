@@ -1,0 +1,82 @@
+{% extends 'usernavbar.html' %}
+{% block main %}
+
+<div class="pagetitle">
+  <h1>View Bills</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+      <li class="breadcrumb-item active">View Bills</li>
+    </ol>
+  </nav>
+</div>
+
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+
+        <div class="card-body">
+          <h5 class="card-title">View Bills</h5>
+
+          <!-- Table with stripped rows -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">SlNo</th>
+                <th scope="col">Upload Date</th>
+                <th scope="col">ReceivedOn</th>
+                <th scope="col">PONo</th>
+                <th scope="col">NameofSupplier</th>
+                <th scope="col">BillNo</th>
+                <th scope="col">BillDate</th>
+                <th scope="col">Species</th>
+                <th scope="col">QtyinMT</th>
+                <th scope="col">BillValue</th>
+                <th scope="col">MIRONo</th>
+                <th scope="col">GivenPaymentDate</th>
+                <th scope="col">ActualPaymentDate</th>
+                <th scope="col">Accept/Reject</th>
+                <th scope="col">Remark</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for i in notes %}
+              <tr>
+                <td>{{forloop.counter}}</td>
+
+                <td>{{i.CreationDate}}</td>
+                <td>{{i.ReceivedOn}}</td>
+                <td>{{i.PONo}}</td>
+                <td>{{i.NameofSupplier}}</td>
+                <td>{{i.BillNo}}</td>
+                <td>{{i.BillDate}}</td>
+                <td>{{i.Species}}</td>
+                <td>{{i.QtyinMT}}</td>
+                <td>{{i.BillValue}}</td>
+                <td>{{i.MIRONo}}</td>
+                <td>{{i.GivenPaymentDate}}</td>
+                <td>{{i.ActualPaymentDate}}</td>
+                <td>{{i.AcceptReject}}</td>
+                <td>{{i.Remark}}</td>
+                <td><a href="{% url 'editNotes' i.id %}" class="btn btn-primary">Edit</a> |
+                  <a href="{% url 'deleteNotes' i.id %}" class="btn btn-danger"
+                    onclick="return confirm('Are you sure to Delete ?')">Delete</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
